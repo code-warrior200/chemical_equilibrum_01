@@ -1,12 +1,22 @@
-// ignore_for_file: file_names, prefer_const_constructors
+// ignore_for_file: file_names, prefer_const_constructors, unused_element, deprecated_member_use
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+
+void _launchURL(String url) async {
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
 
 class TutorialScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Chemical Equilibrium Tutorial'),
+        title: Text('Chemical Equilibrium Tutorial & Simulation'),
         backgroundColor: Colors.teal, // Modern AppBar color
       ),
       body: SingleChildScrollView(
@@ -26,7 +36,7 @@ class TutorialScreen extends StatelessWidget {
 
             // Image to explain equilibrium
             _buildImageCard(
-              'https://www.chemistrylearner.com/wp-content/uploads/2016/12/Equilibrium-Reaction-Graph.jpg', 
+              'https://www.google.com/imgres?q=Graph%20showing%20a%20reaction%20reaching%20chemical%20equilibrium&imgurl=https%3A%2F%2Fstudy.com%2Fcimages%2Fmultimages%2F16%2Fhi_reaction_concentration_graph_with_line1553866909777717444.png&imgrefurl=https%3A%2F%2Fstudy.com%2Fskill%2Flearn%2Fhow-to-identify-chemical-equilibrium-from-a-graph-explanation.html&docid=f2mZKKU-iwnJdM&tbnid=m7VO-UlKC5OWlM&vet=12ahUKEwjWk_X4gpiJAxUiWkEAHU3SJSYQM3oECBoQAA..i&w=442&h=401&hcb=2&ved=2ahUKEwjWk_X4gpiJAxUiWkEAHU3SJSYQM3oECBoQAA', 
               'Graph showing a reaction reaching chemical equilibrium.'
             ),
             SizedBox(height: 30),
@@ -35,9 +45,9 @@ class TutorialScreen extends StatelessWidget {
             _buildSectionTitle('Key Concepts of Chemical Equilibrium'),
             SizedBox(height: 16),
             _buildTextContent(
-              '1. **Dynamic Nature**: Even though concentrations remain constant at equilibrium, both forward and reverse reactions continue to occur at the same rate.\n\n'
-              '2. **Le Chatelier\'s Principle**: When a change is applied to a system in equilibrium, the system adjusts to minimize that change. For example, increasing the concentration of reactants will shift the equilibrium towards more products.\n\n'
-              '3. **Reaction Quotient (Q) and Equilibrium Constant (K)**: The relationship between reactants and products at any time can be expressed with Q, and at equilibrium with K.'
+              '1. Dynamic Nature: Even though concentrations remain constant at equilibrium, both forward and reverse reactions continue to occur at the same rate.\n\n'
+              '2. Le Chatelier\'s Principle: When a change is applied to a system in equilibrium, the system adjusts to minimize that change. For example, increasing the concentration of reactants will shift the equilibrium towards more products.\n\n'
+              '3. Reaction Quotient (Q) and Equilibrium Constant (K): The relationship between reactants and products at any time can be expressed with Q, and at equilibrium with K.'
             ),
             SizedBox(height: 20),
 
@@ -76,9 +86,9 @@ class TutorialScreen extends StatelessWidget {
                   ),
                   elevation: 3,
                 ),
-                onPressed: () {
-                  // Navigate to further tutorial sections
-                },
+                 onPressed: () {
+                    _launchURL('https://www.chemguide.co.uk/physical/equilibria/lechatelier.html'); // Link to more resources
+                  },
                 child: Text(
                   'Learn More',
                   style: TextStyle(fontSize: 18),
