@@ -14,6 +14,7 @@ class ChemicalEquilibriumApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Chemical Equilibrium',
+      debugShowCheckedModeBanner: false, // Removes the debug banner
       initialRoute: '/',
       routes: {
         '/': (context) => HomeScreen(),
